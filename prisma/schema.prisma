@@ -1,0 +1,21 @@
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    // core user information
+    id    String @id @unique
+    email String @unique
+
+    // subscription information
+    stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+    stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+    stripePriceId          String?   @unique @map(name: "stripe_price_id")
+    stripeCurrentPeriodEnd DateTime? @unique @map(name: "stripe_current_period_end")
+}
