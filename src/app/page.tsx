@@ -15,14 +15,11 @@ export default function Home() {
                     </p>
                 </div>
                 <h1 className="max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl">
-                    Chat with your
-                    <span className="text-blue-600"> documents</span> in
-                    seconds.
+                    Cryptic <span className="text-blue-600"> Contracts ?</span>
                 </h1>
                 <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-                    Catalyst allows you have to conversations with your PDF
-                    documents. Simply upload your file and start asking right
-                    away.
+                    Let Catalyst handle the fine print. Get back to doing things
+                    that matter.
                 </p>
                 <Link
                     className={buttonVariants({
@@ -87,11 +84,11 @@ export default function Home() {
                 <div className="mb-12 px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl sm:text-center">
                         <h2 className="mt-2 font-bold text-4xl text-gray-900 sm:text-5xl">
-                            Start Chatting in minutes
+                            Legal-ease? No thanks.
                         </h2>
                         <p className="mt-4 text-lg text-gray-600">
-                            Chatting to your PDF Files have never been easier
-                            than with Catalyst.
+                            Ever stared at a contract unable to decipher a
+                            thing? Catalyst has you covered.
                         </p>
                     </div>
                 </div>
@@ -107,15 +104,15 @@ export default function Home() {
                                 Sign up for an account
                             </span>
                             <span className="mt-2 text-zinc-700">
-                                Either starting out with a free plan or choose
-                                our{' '}
+                                Start with a free trial or dive straight with{' '}
                                 <Link
                                     href="/pricing"
                                     className="text-blue-700 underline underline-offset-2"
                                 >
-                                    pro plan
+                                    Pro
                                 </Link>
-                                .
+                                {'. '}
+                                Your first week on us.
                             </span>
                         </div>
                     </li>
@@ -125,11 +122,11 @@ export default function Home() {
                                 Step 2
                             </span>
                             <span className="text-xl font-semibold">
-                                Upload your PDF file
+                                Unpack Your Contracts
                             </span>
                             <span className="mt-2 text-zinc-700">
-                                We&apos;ll process your file and make it ready
-                                for you to chat with.
+                                Import your Contracts, and watch Catalyst
+                                decipher the legalese in a flash.
                             </span>
                         </div>
                     </li>
@@ -139,11 +136,11 @@ export default function Home() {
                                 Step 3
                             </span>
                             <span className="text-xl font-semibold">
-                                Start asking questions
+                                Ask Away
                             </span>
                             <span className="mt-2 text-zinc-700">
-                                It&apos;s that simple. Try out Catalyst today -
-                                it really takes less than a minute.
+                                Dive into specific clauses and understand risks.
+                                No jargon, just insights.
                             </span>
                         </div>
                     </li>
