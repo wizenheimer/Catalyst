@@ -1,9 +1,11 @@
-import { Cloud, File } from 'lucide-react';
+import { Cloud, File, Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { Progress } from './ui/progress';
 import { useUploadThing } from '@/lib/uploadthing';
-import { toast } from './ui/use-toast';
+import { toast, useToast } from './ui/use-toast';
+import { trpc } from '@/app/_trpc/client';
+import router from 'next/router';
 
 type Props = {};
 
@@ -12,6 +14,15 @@ function UploadDropzone({}: Props) {
     const [uploadProgress, setUploadProgress] = useState<number>(0);
 
     const { startUpload } = useUploadThing('pdfUploader');
+    const { toast } = useToast();
+
+    const { mutate: startPolling } = trpc.getFile.useMutation({
+        onSuccess: (file) => {
+            router.push(`/dashboard/${file.id}`);
+        },
+        retry: true,
+        retryDelay: 500
+    });
 
     const startSimulatedProgress = () => {
         setUploadProgress(0);
@@ -59,8 +70,11 @@ function UploadDropzone({}: Props) {
 
                 // mock progress delay
                 await new Promise((resolve) => setTimeout(resolve, 1000));
+
                 clearInterval(progressInterval);
                 setUploadProgress(100);
+
+                startPolling({ key });
             }}
         >
             {({ getRootProps, getInputProps, acceptedFiles }) => (
@@ -101,8 +115,21 @@ function UploadDropzone({}: Props) {
                                         value={uploadProgress}
                                         className="h-1 w-full bg-zinc-200"
                                     />
+                                    {uploadProgress === 100 ? (
+                                        <div className="flex gap-1 items-center justify-center text-sm text-zinc-700 text-center pt-2">
+                                            <Loader2 className="h-3 w-3 animate-spin" />
+                                            Redirecting...
+                                        </div>
+                                    ) : null}
                                 </div>
                             ) : null}
+
+                            <input
+                                {...getInputProps()}
+                                type="file"
+                                id="dropzone-file"
+                                className="hidden"
+                            />
                         </label>
                     </div>
                 </div>
