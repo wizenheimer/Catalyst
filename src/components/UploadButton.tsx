@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent } from './ui/dialog';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import { Button } from './ui/button';
+import UploadDropzone from './UploadDropzone';
 
 type Props = {};
 
@@ -20,7 +21,9 @@ function UploadButton({}: Props) {
             <DialogTrigger asChild onClick={() => setisOpen(true)}>
                 <Button>Upload PDF</Button>
             </DialogTrigger>
-            <DialogContent></DialogContent>
+            <DialogContent>
+                <UploadDropzone />
+            </DialogContent>
         </Dialog>
     );
 }
