@@ -26,6 +26,7 @@ import {
 } from '@radix-ui/react-dropdown-menu';
 
 import SimpleBar from 'simplebar-react';
+import PdfFullscreen from './PdfFullscreen';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -81,6 +82,7 @@ function PdfRenderer({ url }: Props) {
                             setCurrPage((prev) =>
                                 prev - 1 > 1 ? prev - 1 : 0
                             );
+                            setValue('page', String(currPage - 1));
                         }}
                     >
                         <ChevronDown className="h-4 w-4" />
@@ -113,6 +115,7 @@ function PdfRenderer({ url }: Props) {
                             setCurrPage((prev) =>
                                 prev + 1 > numPages! ? numPages! : prev + 1
                             );
+                            setValue('page', String(currPage + 1));
                         }}
                     >
                         <ChevronUp className="h-4 w-4" />
@@ -156,6 +159,7 @@ function PdfRenderer({ url }: Props) {
                         <RotateCw className="h-4 w-4" />
                     </Button>
                     {/* pdf full screen */}
+                    <PdfFullscreen fileUrl={url} />
                 </div>
             </div>
             {/* pdf viewer */}
