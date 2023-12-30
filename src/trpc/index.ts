@@ -70,6 +70,18 @@ export const appRouter = router({
             });
             if (!file) throw new TRPCError({ code: 'NOT_FOUND' });
             return file;
+        }),
+    getFileUploadStatus: privateProcedure
+        .input(z.object({ fileId: z.string() }))
+        .query(async ({ ctx, input }) => {
+            const file = await db.file.findFirst({
+                where: {
+                    id: input.fileId,
+                    userId: ctx.userId
+                }
+            });
+            if (!file) return { status: 'PENDING' as const };
+            return { status: file.uploadStatus };
         })
 });
 
